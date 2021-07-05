@@ -24,9 +24,13 @@ spec:
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
+              # for postgres we add the subpath:
+              # any data inside the container that's stored inside
+              # the mountPath is going to be stored inside a folder
+              # inside the PersVol. we have to override a default behaviour
               subPath: postgres
           env:
-            - name: POSTGRES_PASSWORD
+            - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
                   name: pgpassword

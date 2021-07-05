@@ -12,26 +12,26 @@ spec:
       labels:
         component: server
     spec:
-      containers:
+      containers: 
         - name: server
-          image: cygnetops/multi-server-pgfix-5-11
+          image: stephengrider/multi-server
           ports:
             - containerPort: 5000
           env:
             - name: REDIS_HOST
-              value: redis-cluster-ip-service
+              value: redis-cluster-ip
             - name: REDIS_PORT
               value: '6379'
             - name: PGUSER
               value: postgres
             - name: PGHOST
-              value: postgres-cluster-ip-service
+              value: postgres-cluster-ip
             - name: PGPORT
               value: '5432'
             - name: PGDATABASE
               value: postgres
             - name: PGPASSWORD
-              valueFrom:
+              valueFrom: 
                 secretKeyRef:
                   name: pgpassword
                   key: PGPASSWORD
